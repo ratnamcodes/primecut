@@ -1,0 +1,49 @@
+# --- Python ---
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+api/dist/
+api/**/*.egg-info/
+
+# --- Secrets: never commit real values. .env.example is the only committed copy ---
+.env
+.env.local
+.env.*.local
+
+# --- Node / Next.js ---
+node_modules/
+.next/
+
+# --- OS / logs ---
+.DS_Store
+*.log
+
+# --- PrimeCut working state, rendered output, model caches ---
+.primecut_work/
+output/
+models/
+
+# --- Media everywhere ---
+*.mp4
+*.mov
+*.mkv
+*.wav
+*.m4a
+
+# Un-ignore the fixture pack. Task 2 decides file by file which small
+# test clips are committed under fixtures/; everything else stays ignored.
+!fixtures/**
+
+# ...but the un-ignore above is only meant for media. Secrets, OS junk,
+# caches, and work dirs stay ignored even when they land inside fixtures/.
+fixtures/**/.env
+fixtures/**/.env.local
+fixtures/**/.env.*.local
+fixtures/**/.DS_Store
+fixtures/**/*.log
+fixtures/**/__pycache__/
+fixtures/**/*.pyc
+fixtures/**/.venv/
+fixtures/**/.primecut_work/
+fixtures/**/output/

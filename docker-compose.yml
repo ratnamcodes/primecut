@@ -1,0 +1,27 @@
+# Local Postgres for PrimeCut. Credentials MUST match the api default
+# database_url: postgresql+psycopg://postgres:postgres@localhost:5432/primecut
+services:
+  postgres:
+    image: postgres:16
+    container_name: primecut-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: primecut
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      # -h localhost forces TCP: the image's first-boot init server is
+      # socket-only, so a socket check could report healthy before the
+      # real server (and the primecut database) exists.
+      test: ["CMD-SHELL", "pg_isready -h localhost -U postgres -d primecut"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    restart: unless-stopped
+
+volumes:
+  pgdata:
