@@ -1,0 +1,25 @@
+# Fixture-pack ignores. The root .gitignore ignores media everywhere and then
+# un-ignores fixtures/**, so every media file in here is COMMITTED unless a
+# line below says otherwise. Anything over ~50 MB, or reproducible in one
+# command from a file that is, stays out: the exact rebuild command for each
+# ignored file is in README.md. Nobody should have to guess how to rebuild
+# this pack.
+
+# 399 MB, CC BY, fetched with yt-dlp (see README).
+interview.mp4
+
+# 33 MB, derived from interview.mp4 by a one-second ffmpeg remux (see README).
+sample.mkv
+
+# yt-dlp / ffmpeg scratch that must never be committed even if a download is
+# interrupted mid-way.
+*.part
+*.ytdl
+*_raw.*
+*.f[0-9]*.mp4
+*.f[0-9]*.m4a
+
+# Personal recordings of the repo owner: never published. Record your own
+# (README.md says how and what properties to check for).
+phone_portrait.mov
+screenrec.mov
